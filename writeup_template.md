@@ -23,15 +23,15 @@ The goals / steps of this project are the following:
 [image2]: ./examples/test_images.png "tests images"
 [image3]: ./examples/after_aug.png "Before augmentation"
 [image4]: ./examples/pre_aug.png "Pre augmentation"
-[image5]: ./examples/placeholder.png "Traffic Sign 1"
-[image6]: ./examples/placeholder.png "Traffic Sign 2"
-[image7]: ./examples/placeholder.png "Traffic Sign 3"
-[image8]: ./examples/placeholder.png "Traffic Sign 4"
-[image9]: ./examples/placeholder.png "Traffic Sign 5"
-[image10]: ./examples/placeholder.png "Traffic Sign 6"
-[image11]: ./examples/placeholder.png "Traffic Sign 7"
-[image12]: ./examples/placeholder.png "Traffic Sign 8"
-[image13]: ./examples/placeholder.png "Traffic Sign 9"
+[image5]: ./test_images/test0.jpg "Traffic Sign 1"
+[image6]: ./test_images/test1.jpg "Traffic Sign 2"
+[image7]: ./test_images/test2.jpg "Traffic Sign 3"
+[image8]: ./test_images/test3.jpg "Traffic Sign 4"
+[image9]: ./test_images/test4.jpeg "Traffic Sign 5"
+[image10]: ./test_images/test5.jpg "Traffic Sign 6"
+[image11]: ./test_images/test6.jpg "Traffic Sign 7"
+[image12]: ./test_images/test7.jpg "Traffic Sign 8"
+[image13]: ./test_images/test8.jpg "Traffic Sign 9"
 
 ## Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -115,6 +115,9 @@ My final model consisted of the following architecture:
 
 
 #### 3. Training
+
+The optimizer 
+
 The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I used an ....
