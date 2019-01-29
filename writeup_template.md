@@ -23,17 +23,18 @@ The goals / steps of this project are the following:
 [image2]: ./examples/test_images.png "tests images"
 [image3]: ./examples/after_aug.png "Before augmentation"
 [image4]: ./examples/pre_aug.png "Pre augmentation"
-[image5]: ./test_images/test0.jpg "Traffic Sign 1"
-[image6]: ./test_images/test1.jpg "Traffic Sign 2"
-[image7]: ./test_images/test2.jpg "Traffic Sign 3"
-[image8]: ./test_images/test3.jpg "Traffic Sign 4"
-[image9]: ./test_images/test4.jpeg "Traffic Sign 5"
-[image10]: ./test_images/test5.jpg "Traffic Sign 6"
-[image11]: ./test_images/test6.jpg "Traffic Sign 7"
-[image12]: ./test_images/test7.jpg "Traffic Sign 8"
-[image13]: ./test_images/test8.jpg "Traffic Sign 9"
+[image5]: ./examples/predictions0.png "Preds"
+[image6]: ./examples/predictions1.png "Preds2"
+[image7]: ./examples/top5_0.png "Top5 1"
+[image8]: ./examples/top5_1.png "Top5 2"
+[image9]: ./examples/top5_2.png "Top5 3"
+[image10]: ./examples/top5_3.png "Top5 4"
+[image11]: ./examples/top5_4.png "Top5 5"
+[image12]: ./examples/top5_5.png "Top5 6"
+[image13]: ./examples/top5_6.png "Top5 7"
+[image14]: ./examples/top5_7.png "Top5 8"
 
-<img src="/test_images/test0.jpg " width="200" height="200" />
+
 
 ## Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -150,8 +151,15 @@ If a well known architecture was chosen:
 #### 1. New German traffic signs found on the web 
 Here are 9 German traffic signs that I found on the web:
 
-![alt text][image5] ![alt text][image6] ![alt text][image7] 
-![alt text][image8] ![alt text][image9] ![alt text][image10] ![alt text][image11] ![alt text][image12]
+<img src="/test_images/test0.jpg " width="200" />
+<img src="/test_images/test1.jpg " width="200" />
+<img src="/test_images/test2.jpg " width="200" />
+<img src="/test_images/test3.jpg " width="200" />
+<img src="/test_images/test4.jpeg " width="200" />
+<img src="/test_images/test5.jpg " width="200" />
+<img src="/test_images/test6.jpg " width="200" />
+<img src="/test_images/test7.jpg " width="200" />
+
 
 The first image might be difficult to classify because ...
 
@@ -171,7 +179,10 @@ Here are the results of the prediction:
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
 
+![alt text][image5] ![alt text][image6] 
+
 #### 3. Model Certainty 
+
 Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
@@ -184,9 +195,13 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 | .20     				| U-turn 										|
 | .05					| Yield											|
 | .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .01				    | Slippery Road         							|
 
 
 For the second image ... 
+
+![alt text][image7] 
+![alt text][image8] ![alt text][image9] ![alt text][image10] ![alt text][image11] ![alt text][image12]
+![alt text][image13] ![alt text][image14]
 
 
