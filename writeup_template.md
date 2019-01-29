@@ -33,6 +33,8 @@ The goals / steps of this project are the following:
 [image12]: ./test_images/test7.jpg "Traffic Sign 8"
 [image13]: ./test_images/test8.jpg "Traffic Sign 9"
 
+<img src="/test_images/test0.jpg " width="200" height="200" />
+
 ## Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
