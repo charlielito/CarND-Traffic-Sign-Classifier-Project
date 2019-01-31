@@ -119,19 +119,19 @@ My final model consisted of the following architecture:
 
 #### 3. Training
 
-The optimizer 
+To train the model, I use the AdamOptimizer, with a batch size of 128, 250 epochs and a learning rate of 0.001, that was slowing decaying, i.e. each epoch it was multiplied by 0.999.
 
-The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+To avoid saving all models each epoch, I save the model if and only if it had an accuracy greater than 95% on the evaluation set. After that, it was tracked the best model on the eval set and saved only that model.
 
-To train the model, I used an ....
+At the end, the model had an accuracy of 97.2% on the evaluation set and 99,9% in the train set.
 
 #### 4. Iteration 
 Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 0.999
+* validation set accuracy of 0.972
+* test set accuracy of 0.951
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -149,7 +149,7 @@ If a well known architecture was chosen:
 ### Test a Model on New Images
 
 #### 1. New German traffic signs found on the web 
-Here are 9 German traffic signs that I found on the web:
+Here are 8 German traffic signs that I found on the web:
 
 <img src="/test_images/test0.jpg " width="200" />
 <img src="/test_images/test1.jpg " width="200" />
@@ -161,47 +161,49 @@ Here are 9 German traffic signs that I found on the web:
 <img src="/test_images/test7.jpg " width="200" />
 
 
-The first image might be difficult to classify because ...
+The two first images might be difficult to classify because of the background. The third image is interesting because it has no background and no colors, so it may be different from the training data. The 4th image can be difficult because of the watermarks of the image. The 5th also because it has no background at all. The 6th because the sign appears small in comparison with the rest of the image. The 7th because of the red background and the 8th may be not that difficult.
 
 #### 2. Model's predictions
-Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
-
-Here are the results of the prediction:
-
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+Here are the results of the predictions. It displays the class ID, the probability and also shows an example in the train set of that predicted class.
+
 
 ![alt text][image5] ![alt text][image6] 
 
+The model was able to correctly guess 7 of the 8 traffic signs, which gives an accuracy of 87.5 %. This compares not so good to the accuracy on the test set of 95.1 %. This can be because the different sizes of this web test and the test set. Also, the image where the models gets it wrong has the sign very small so this can be tricky for the network. I made a test where the sign was cropped centrally and the model got it right.
+
+
 #### 3. Model Certainty 
 
-Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
-
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road         							|
-
-
-For the second image ... 
+For the first image, the model is very sure that it is a 30 km/h speed limit sign (probability of 1.0), and the image does contain that sign. The top five soft max probabilities can be seen in the bar chart.
 
 ![alt text][image7] 
-![alt text][image8] ![alt text][image9] ![alt text][image10] ![alt text][image11] ![alt text][image12]
-![alt text][image13] ![alt text][image14]
+
+For the second image, the model is also very confident that the image is a "go straight or right" sign with 1.0 of confidence. The top five soft max probabilities can be seen in the bar chart.
+
+![alt text][image8] 
+
+For the third image, the model is not that sure that this is a "slippery road" sign (probability of 0.29), but the image does contain a "slippery road" sign. The top five soft max probabilities were: slippery road, dangerous curve to the left, double curve, wild animals and right-of-a-way at the next intersection as it can be seen in the next bar chart. It make sense that the model is not that certain since the 3 first top max probabilities classes could correspond to the image (curves), since the image is very pixeled.
+
+![alt text][image9]
+
+For this 4th image, the model is also very confident that the image is a "keep right" sign with 1.0 of confidence. The top five soft max probabilities can be seen in the bar chart.
+
+![alt text][image10] 
+
+
+For the 5th, 6th and 7th images, the model is very confident that the sign are right-of-a-way at the next intersection sign, 20 km/h speed limit sign, and road work sign with 1.0 of confidence. The top five soft max probabilities can be seen in the bar charts with almost no probability (0%).
+
+![alt text][image11]
+
+![alt text][image12]
+
+![alt text][image13]
+
+
+For this last image, the model predicted a 80km/h speed limit sign with a low probability, i.e. 32.8 %. The top five soft max probabilities correspond all to speed limit sign, being the third max probability the right prediction (approx 14%). This is interesting since the model is not sure of which of the speed limit signs this image belongs to. This can be, again, because the sign is small in comparison with the rest of the image, and in the train set not images like this appear.
+
+![alt text][image14]
 
 
