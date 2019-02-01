@@ -1,4 +1,4 @@
-# **Traffic Sign Recognition** 
+# **Traffic Sign Recognition**
 **Carlos Andres Alvarez Restrepo**
 **Self driving nanodegree course**
 
@@ -37,7 +37,7 @@ The goals / steps of this project are the following:
 
 
 ## Rubric Points
-Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation. 
 
 ---
 ### Writeup / README
@@ -59,7 +59,7 @@ signs data set:
 
 #### 2. Exploratory visualization of the dataset
 
-Here is an exploratory visualization of the data set. Here you can see 20 random images with their corresponding class from the training set. As you can see they vary a lot in terms of ilumination and background.
+Here is an exploratory visualization of the data set. Here you can see 20 random images with their corresponding class from the training set. As you can see they vary a lot in terms of illumination and background.
 
 ![alt text][image2]
 
@@ -72,9 +72,9 @@ Also a bar chart shows how the data is distributed along the 43 classes. As it c
 
 #### 1. Preprocessing of images
 
-The images stayed as color images since some of the colors of the traffic signs may help the network to classify them correctly, i.e. stop signs are red, the border of some signs are also red, and so on. There was also no normalization made since the first experiments showed no much improvement when normalizing. 
+The images stayed as color images since some of the colors of the traffic signs may help the network to classify them correctly, i.e. stop signs are red, the border of some signs are also red, and so on. There was also no normalization made since the first experiments showed no much improvement when normalizing.
 
-The only tecnique used in this stage was to perform a series of transformation to the images in train time to help the network not to overfit the train set. The data augmentation (transformation) pipeline consists in:
+The only technique used in this stage was to perform a series of transformation to the images in train time to help the network not to overfit the train set. The data augmentation (transformation) pipeline consists in:
 
 * Gaussian Blur: random sigma for blur between 0.0 and 1.0
 * Crop: Random pixel crop in all directions from 0 to 6 pixels
@@ -82,10 +82,10 @@ The only tecnique used in this stage was to perform a series of transformation t
 * Chanels multiplication: Random value between 1.0 and 1.5
 * Additive Poisson Noise: Random parameter from 2 to 12
 * Random transforms:
-    * Random scalization in `x` and `y` direction: random values between 0.9 and 1.1
-    * Random translation in both direction: values between -0.1 and 0.1
-    * Random rotation between -15 and 15 degrees
-    * Random shear between -2 and 2 degrees
+   * Random scalization in `x` and `y` direction: random values between 0.9 and 1.1
+   * Random translation in both direction: values between -0.1 and 0.1
+   * Random rotation between -15 and 15 degrees
+   * Random shear between -2 and 2 degrees
 
 The order of each transformation is done randomly. At train time only the 60% of the images are "augmented" randomly.
 
@@ -114,7 +114,6 @@ My final model consisted of the following architecture:
 * Fully connected: 2048 neurons, RELU activation, dropout = 0.6
 * Fully connected: 512 neurons, RELU activation, dropout = 0.6
 * Dense layer for output: 43 neurons, Softmax activation
- 
 
 
 #### 3. Training
@@ -125,30 +124,25 @@ To avoid saving all models each epoch, I save the model if and only if it had an
 
 At the end, the model had an accuracy of 97.2% on the evaluation set and 99,9% in the train set.
 
-#### 4. Iteration 
-Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+#### 4. Iteration
 
 My final model results were:
+
 * training set accuracy of 0.999
 * validation set accuracy of 0.972
 * test set accuracy of 0.951
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+The validation accuracy was calculated during training as it can be seen in the Jupyter notebook after each epoch. The training and test accuracy were calculated after that in the "Analyze performance part".
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+I took a common architecture of a couple of convolutional layers stacked (4 layers), using maxpooling between layers, and 2 fully connected layers at the end before the output layer. The number of kernels in the convolutional part were increasing from 16 to 64 kernels at the last layer. This simple architecture is similar to LeNet and works pretty well but it must be regularized.
+
+At the beginning I tried it without using dropout but the evaluation accuracy was below 0.93. Then I used dropout only in the last fully connected layer, and got above 0.93, but I wanted to get more than 0.97, since with 0.93 seemed that the network still overfitted the train set. That is why I also added dropout to the other fully connected layer, and also performed aggressive data augmentation (the first trys I did not do any pre processing). With this modification I let the model train for long enough to get slightly more than 0.97 in the dev set.
+
+At the end, the dev accuracy and train accuracy were closed to each other, indicating that the model had learned good enough, but of course it could improve more.
 
 ### Test a Model on New Images
 
-#### 1. New German traffic signs found on the web 
+#### 1. New German traffic signs found on the web
 Here are 8 German traffic signs that I found on the web:
 
 <img src="/test_images/test0.jpg " width="200" />
@@ -169,31 +163,31 @@ The two first images might be difficult to classify because of the background. T
 Here are the results of the predictions. It displays the class ID, the probability and also shows an example in the train set of that predicted class.
 
 
-![alt text][image5] ![alt text][image6] 
+![alt text][image5] ![alt text][image6]
 
 The model was able to correctly guess 7 of the 8 traffic signs, which gives an accuracy of 87.5 %. This compares not so good to the accuracy on the test set of 95.1 %. This can be because the different sizes of this web test and the test set. Also, the image where the models gets it wrong has the sign very small so this can be tricky for the network. I made a test where the sign was cropped centrally and the model got it right.
 
 
-#### 3. Model Certainty 
+#### 3. Model Certainty
 
-For the first image, the model is very sure that it is a 30 km/h speed limit sign (probability of 1.0), and the image does contain that sign. The top five soft max probabilities can be seen in the bar chart.
+For the first image, the model is very sure that it is a 30 km/h speed limit sign (probability of 1.0), and the image does contain that sign. The top five softmax probabilities can be seen in the bar chart.
 
-![alt text][image7] 
+![alt text][image7]
 
-For the second image, the model is also very confident that the image is a "go straight or right" sign with 1.0 of confidence. The top five soft max probabilities can be seen in the bar chart.
+For the second image, the model is also very confident that the image is a "go straight or right" sign with 1.0 of confidence. The top five softmax probabilities can be seen in the bar chart.
 
-![alt text][image8] 
+![alt text][image8]
 
-For the third image, the model is not that sure that this is a "slippery road" sign (probability of 0.29), but the image does contain a "slippery road" sign. The top five soft max probabilities were: slippery road, dangerous curve to the left, double curve, wild animals and right-of-a-way at the next intersection as it can be seen in the next bar chart. It make sense that the model is not that certain since the 3 first top max probabilities classes could correspond to the image (curves), since the image is very pixeled.
+For the third image, the model is not that sure that this is a "slippery road" sign (probability of 0.29), but the image does contain a "slippery road" sign. The top five softmax probabilities were: slippery road, dangerous curve to the left, double curve, wild animals and right-of-a-way at the next intersection as it can be seen in the next bar chart. It make sense that the model is not that certain since the 3 first top max probabilities classes could correspond to the image (curves), since the image is very pixelated.
 
 ![alt text][image9]
 
-For this 4th image, the model is also very confident that the image is a "keep right" sign with 1.0 of confidence. The top five soft max probabilities can be seen in the bar chart.
+For this 4th image, the model is also very confident that the image is a "keep right" sign with 1.0 of confidence. The top five softmax probabilities can be seen in the bar chart.
 
-![alt text][image10] 
+![alt text][image10]
 
 
-For the 5th, 6th and 7th images, the model is very confident that the sign are right-of-a-way at the next intersection sign, 20 km/h speed limit sign, and road work sign with 1.0 of confidence. The top five soft max probabilities can be seen in the bar charts with almost no probability (0%).
+For the 5th, 6th and 7th images, the model is very confident that the sign are right-of-a-way at the next intersection sign, 20 km/h speed limit sign, and road work sign with 1.0 of confidence. The top five softmax probabilities can be seen in the bar charts with almost no probability (0%).
 
 ![alt text][image11]
 
@@ -202,8 +196,6 @@ For the 5th, 6th and 7th images, the model is very confident that the sign are r
 ![alt text][image13]
 
 
-For this last image, the model predicted a 80km/h speed limit sign with a low probability, i.e. 32.8 %. The top five soft max probabilities correspond all to speed limit sign, being the third max probability the right prediction (approx 14%). This is interesting since the model is not sure of which of the speed limit signs this image belongs to. This can be, again, because the sign is small in comparison with the rest of the image, and in the train set not images like this appear.
+For this last image, the model predicted a 80km/h speed limit sign with a low probability, i.e. 32.8 %. The top five softmax probabilities correspond all to speed limit sign, being the third max probability the right prediction (approx 14%). This is interesting since the model is not sure of which of the speed limit signs this image belongs to. This can be, again, because the sign is small in comparison with the rest of the image, and in the train set not images like this appear.
 
 ![alt text][image14]
-
-
