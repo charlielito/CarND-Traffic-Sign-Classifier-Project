@@ -82,7 +82,7 @@ The only technique used in this stage was to perform a series of transformation 
 * Chanels multiplication: Random value between 1.0 and 1.5
 * Additive Poisson Noise: Random parameter from 2 to 12
 * Random transforms:
-   * Random scalization in `x` and `y` direction: random values between 0.9 and 1.1
+  * Random scalization in `x` and `y` direction: random values between 0.9 and 1.1
    * Random translation in both direction: values between -0.1 and 0.1
    * Random rotation between -15 and 15 degrees
    * Random shear between -2 and 2 degrees
